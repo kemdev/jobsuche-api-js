@@ -15,7 +15,7 @@ Fetch Jobs from Arbeitsagentur API
 ## Fetch Job Search Results
 
 ```js
-import { fetchJobsSearch } from 'job-search-library';
+import { fetchJobsSearch } from 'jobsuche-api-js';
 
 const searchParams = { what: 'developer', where: 'Berlin' };
 fetchJobsSearch(searchParams).then(response => console.log(response));
