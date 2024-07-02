@@ -1,5 +1,5 @@
 
-# Job Search Library
+# Arbeitsagentur Jobsuche API JS
 
 This project provides a library for interacting with the job search API.
 
