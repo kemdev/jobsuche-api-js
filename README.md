@@ -22,7 +22,7 @@ fetchJobsSearch(searchParams).then(response => console.log(response));
 ```
 
 ## Fetch Job Details
-```bash
+```sh
 import { fetchJobDetails } from 'job-search-library';
 
 const jobId = '12345';
