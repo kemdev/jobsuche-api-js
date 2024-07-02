@@ -1,0 +1,51 @@
+{
+  "name": "jobsuche-api-js",
+  "version": "0.1.0",
+  "description": "Arbeitsagentur jobs api",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "prepublishOnly": "npm run tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kemdev/jobsuche-api-js.git"
+  },
+  "keywords": [
+    "jobsearch",
+    "jobs",
+    "job-api",
+    "jobs-api",
+    "arbeitsagentur",
+    "arbeitsagentur-jobs"
+  ],
+  "author": "Abdulkarim Alarmanazi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kemdev/jobsuche-api-js/issues"
+  },
+  "homepage": "https://github.com/kemdev/jobsuche-api-js#readme",
+  "devDependencies": {
+    "@types/base-64": "^1.0.2",
+    "@types/node": "^20.14.9",
+    "typedoc": "^0.26.3",
+    "typescript": "^5.5.2"
+  },
+  "engines": {
+    "node": ">=18.18.2"
+  },
+  "dependencies": {
+    "@types/uuid": "^10.0.0",
+    "axios": "^1.7.2",
+    "base-64": "^1.0.0",
+    "serve": "^14.2.3",
+    "uuid": "^10.0.0"
+  },
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
+}
