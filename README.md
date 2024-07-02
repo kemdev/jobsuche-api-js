@@ -5,7 +5,7 @@ This project provides a library for interacting with the job search API.
 
 ## Installation
 
-```bash
+```sh
 npm install job-search-library
 ```
 # jobsuche-api-js
@@ -14,7 +14,7 @@ Fetch Jobs from Arbeitsagentur API
 # Usage
 ## Fetch Job Search Results
 
-```bash
+```js
 import { fetchJobsSearch } from 'job-search-library';
 
 const searchParams = { what: 'developer', where: 'Berlin' };
