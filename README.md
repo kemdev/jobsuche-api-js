@@ -19,8 +19,9 @@ Fetch Jobs from Arbeitsagentur API
 
 # Usage
 
-## First you need to initialize the authentication for the api call
-```js
+### No If you would like to use "The "
+~~<h2>First you need to initialize the authentication for the api call</h2>~~
+<del>
 /**
  *  client_id and client_secret they are provided in the original docs 
  *  @see https://github.com/bundesAPI/jobsuche-api
@@ -29,7 +30,8 @@ const clientId = 'c003a37f-024f-462a-b36d-b001be4cd24a';
 const clientSecret = '32a39620-32b3-4307-9aa1-511e3d7f48a8';
 const auth = () => authManager.initialize(clientId, clientSecret);
 
-```
+</del>
+
 
 ## Fetch Job Search Results
 

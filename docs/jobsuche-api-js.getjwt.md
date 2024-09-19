@@ -7,9 +7,9 @@
 **Signature:**
 
 ```typescript
-declare function getJwt(): Promise<any>;
+declare function getJwt(): Promise<string | {}>;
 ```
 **Returns:**
 
-Promise&lt;any&gt;
+Promise&lt;string \| {}&gt;
 

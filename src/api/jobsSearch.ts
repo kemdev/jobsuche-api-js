@@ -25,8 +25,13 @@ async function jobsSearchOld(
 ): Promise<JobSearchResponse | null> {
   const translatedParams = params ? paramsToAlias(params) : undefined;
   try {
-    const accessToken = await authManager.getAccessToken();
-    header.OAuthAccessToken = accessToken;
+
+    // NOTE No need for this anymore.
+    // const accessToken = await authManager.getAccessToken();
+    // header.OAuthAccessToken = accessToken;
+
+    // NOTE use this for authorization.
+    header["X-Api-Key"] = "jobboerse-jobsuche"; 
 
     const response = await axios.get<JobSearchResponse>(jobLink, {
       headers: header,

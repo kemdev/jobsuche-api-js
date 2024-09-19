@@ -4,19 +4,41 @@
 
 ```ts
 
-// @public (undocumented)
-export function getJwt(): Promise<any>;
-
-// Warning: (ae-forgotten-export) The symbol "IJobDetailsProps" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "AuthManager" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export function jobDetails(refnr: string): Promise<IJobDetailsProps | null>;
+export const authManager: AuthManager;
+
+// @public (undocumented)
+export function fetchCompanyInfo(refnr: string): Promise<any>;
+
+// Warning: (ae-forgotten-export) The symbol "IJobDetailsV2ResponseProps" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function fetchJobDetailsV2(refnr: string): Promise<IJobDetailsV2ResponseProps | null>;
+
+// Warning: (ae-forgotten-export) The symbol "IJobDetailsV3ResponseProps" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function fetchJobDetailsV3(refnr: string): Promise<IJobDetailsV3ResponseProps | null>;
+
+// Warning: (ae-forgotten-export) The symbol "ICompanyAvatar" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "ICompanyLogoURL" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function getCompanyLogoURL(kundennummerHash: string, getAvatarIfNeeded?: ICompanyAvatar | boolean): Promise<ICompanyLogoURL>;
+
+// @public (undocumented)
+export function getJwt(): Promise<string | {}>;
 
 // Warning: (ae-forgotten-export) The symbol "IFetchJobsProps" needs to be exported by the entry point index.d.ts
 // Warning: (ae-forgotten-export) The symbol "JobSearchResponse" needs to be exported by the entry point index.d.ts
 //
 // @public
 export function jobsSearch(params?: Partial<IFetchJobsProps>): Promise<JobSearchResponse | null>;
+
+// @public
+export function jobsSearchOld(params?: Partial<IFetchJobsProps>): Promise<JobSearchResponse | null>;
 
 // @public (undocumented)
 export const searchParamsExample: Partial<IFetchJobsProps>;

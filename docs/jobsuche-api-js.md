@@ -19,6 +19,46 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[fetchCompanyInfo(refnr)](./jobsuche-api-js.fetchcompanyinfo.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[fetchJobDetailsV2(refnr)](./jobsuche-api-js.fetchjobdetailsv2.md)
+
+
+</td><td>
+
+Fetches job details (V2) based on the provided reference number.
+
+
+</td></tr>
+<tr><td>
+
+[fetchJobDetailsV3(refnr)](./jobsuche-api-js.fetchjobdetailsv3.md)
+
+
+</td><td>
+
+Fetches job details (V3) based on the provided reference number. Note: No OAuth Access Token Required! Only Add 'X-Api-Key': 'jobboerse-jobsuche' to the header.
+
+
+</td></tr>
+<tr><td>
+
+[getCompanyLogoURL(kundennummerHash, getAvatarIfNeeded)](./jobsuche-api-js.getcompanylogourl.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
 [getJwt()](./jobsuche-api-js.getjwt.md)
 
 
@@ -28,16 +68,18 @@ Description
 </td></tr>
 <tr><td>
 
-[jobDetails(refnr)](./jobsuche-api-js.jobdetails.md)
+[jobsSearch(params)](./jobsuche-api-js.jobssearch.md)
 
 
 </td><td>
+
+ jobsSearch without OAuth access token it is using the new auth header "X-Api-Key" Fetches job search results based on the provided parameters.
 
 
 </td></tr>
 <tr><td>
 
-[jobsSearch(params)](./jobsuche-api-js.jobssearch.md)
+[jobsSearchOld(params)](./jobsuche-api-js.jobssearchold.md)
 
 
 </td><td>
@@ -62,6 +104,15 @@ Description
 
 </th></tr></thead>
 <tbody><tr><td>
+
+[authManager](./jobsuche-api-js.authmanager.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
 
 [searchParamsExample](./jobsuche-api-js.searchparamsexample.md)
 

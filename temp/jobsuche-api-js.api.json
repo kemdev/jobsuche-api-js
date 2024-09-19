@@ -173,13 +173,45 @@
       "preserveMemberOrder": false,
       "members": [
         {
-          "kind": "Function",
-          "canonicalReference": "jobsuche-api-js!getJwt:function(1)",
+          "kind": "Variable",
+          "canonicalReference": "jobsuche-api-js!authManager:var",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "declare function getJwt(): "
+              "text": "_default: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AuthManager",
+              "canonicalReference": "jobsuche-api-js!~AuthManager:class"
+            }
+          ],
+          "fileUrlPath": "lib/esm/auth/authManager.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "authManager",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "jobsuche-api-js!fetchCompanyInfo:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "declare function fetchCompanyInfo(refnr: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
             },
             {
               "kind": "Reference",
@@ -195,24 +227,33 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "lib/esm/auth/authApi.d.ts",
+          "fileUrlPath": "lib/esm/api/companyInfo.d.ts",
           "returnTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 3
+            "startIndex": 3,
+            "endIndex": 5
           },
           "releaseTag": "Public",
           "overloadIndex": 1,
-          "parameters": [],
-          "name": "getJwt"
+          "parameters": [
+            {
+              "parameterName": "refnr",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "fetchCompanyInfo"
         },
         {
           "kind": "Function",
-          "canonicalReference": "jobsuche-api-js!jobDetails:function(1)",
-          "docComment": "/**\n * @param refnr - from the response of the jobSearch function. Note: Please add the refnr as it is no need to encode it with Base64.\n *\n * @returns {Promise<JobDetails | null>} - The job details result.\n */\n",
+          "canonicalReference": "jobsuche-api-js!fetchJobDetailsV2:function(1)",
+          "docComment": "/**\n * Fetches job details (V2) based on the provided reference number.\n *\n * @param refnr - from the response of the jobSearch function.\n *\n * @typeParam string - Note: Please add the refnr as it is no need to encode it with Base64.\n *\n * @returns {(Promise<JobDetails | null>)} - The job details result.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "declare function jobDetails(refnr: "
+              "text": "declare function fetchJobDetailsV2(refnr: "
             },
             {
               "kind": "Content",
@@ -233,8 +274,8 @@
             },
             {
               "kind": "Reference",
-              "text": "IJobDetailsProps",
-              "canonicalReference": "jobsuche-api-js!~IJobDetailsProps:interface"
+              "text": "IJobDetailsV2ResponseProps",
+              "canonicalReference": "jobsuche-api-js!~IJobDetailsV2ResponseProps:interface"
             },
             {
               "kind": "Content",
@@ -262,12 +303,184 @@
               "isOptional": false
             }
           ],
-          "name": "jobDetails"
+          "name": "fetchJobDetailsV2"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "jobsuche-api-js!fetchJobDetailsV3:function(1)",
+          "docComment": "/**\n * Fetches job details (V3) based on the provided reference number. Note: No OAuth Access Token Required! Only Add 'X-Api-Key': 'jobboerse-jobsuche' to the header.\n *\n * @param refnr - The reference number of the job.\n *\n * @returns {Promise<IJobDetailsV3ResponseProps | null>} - The job details.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "declare function fetchJobDetailsV3(refnr: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "IJobDetailsV3ResponseProps",
+              "canonicalReference": "jobsuche-api-js!~IJobDetailsV3ResponseProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | null>"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "lib/esm/api/jobDetails.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 7
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "refnr",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "fetchJobDetailsV3"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "jobsuche-api-js!getCompanyLogoURL:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "declare function getCompanyLogoURL(kundennummerHash: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", getAvatarIfNeeded?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ICompanyAvatar",
+              "canonicalReference": "jobsuche-api-js!~ICompanyAvatar:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | boolean"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ICompanyLogoURL",
+              "canonicalReference": "jobsuche-api-js!~ICompanyLogoURL:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "lib/esm/api/companyLogo.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 6,
+            "endIndex": 10
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "kundennummerHash",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "getAvatarIfNeeded",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "isOptional": true
+            }
+          ],
+          "name": "getCompanyLogoURL"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "jobsuche-api-js!getJwt:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "declare function getJwt(): "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<string | {}>"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "lib/esm/auth/authApi.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [],
+          "name": "getJwt"
         },
         {
           "kind": "Function",
           "canonicalReference": "jobsuche-api-js!jobsSearch:function(1)",
-          "docComment": "/**\n * Fetches job search results based on the provided parameters.\n *\n * @param params - The search parameters (optional).\n *\n * @returns {Promise<JobSearchResponse | null>} - The job search results.\n */\n",
+          "docComment": "/**\n * @function jobsSearch without OAuth access token it is using the new auth header \"X-Api-Key\" Fetches job search results based on the provided parameters.\n *\n * @param params - The search parameters (optional).\n *\n * @returns {Promise<JobSearchResponse | null>} - The job search results.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -336,6 +549,79 @@
             }
           ],
           "name": "jobsSearch"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "jobsuche-api-js!jobsSearchOld:function(1)",
+          "docComment": "/**\n * Fetches job search results based on the provided parameters.\n *\n * @param params - The search parameters (optional).\n *\n * @returns {Promise<JobSearchResponse | null>} - The job search results.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "declare function jobsSearchOld(params?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Partial",
+              "canonicalReference": "!Partial:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "IFetchJobsProps",
+              "canonicalReference": "jobsuche-api-js!~IFetchJobsProps:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "JobSearchResponse",
+              "canonicalReference": "jobsuche-api-js!~JobSearchResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | null>"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "lib/esm/api/jobsSearch.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 6,
+            "endIndex": 10
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "params",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              },
+              "isOptional": true
+            }
+          ],
+          "name": "jobsSearchOld"
         },
         {
           "kind": "Variable",
