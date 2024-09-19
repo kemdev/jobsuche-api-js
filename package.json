@@ -1,6 +1,6 @@
 {
   "name": "jobsuche-api-js",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.1-beta.1",
   "description": "Arbeitsagentur jobs api with javascript",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
