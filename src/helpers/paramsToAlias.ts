@@ -1,7 +1,7 @@
-import { aliasMapping } from '../Constants/alias';
+import { aliasMapping } from '../constants/alias';
 import { IFetchJobsProps, WorkTime } from '../types/jobsSearchTypes';
 
-function paramsToAlias(params: Partial<IFetchJobsProps>) {
+function paramsToAlias(params?: Partial<IFetchJobsProps>) {
   const translatedParams: Record<string, any> = {};
 
   for (const key in params) {

@@ -1,4 +1,5 @@
 interface JobOffer {
+  title: string;
   hashId: string;
   beruf: string;
   refnr: string;
@@ -7,6 +8,7 @@ interface JobOffer {
   eintrittsdatum: string; // Assuming this can be an empty object or have dynamic properties
   arbeitsort: Arbeitsort;
   modifikationsTimestamp: string;
+  kundennummerHash: string;
 }
 
 // Define the structure for coordinates
