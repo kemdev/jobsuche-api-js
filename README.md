@@ -19,9 +19,10 @@ Fetch Jobs from Arbeitsagentur API
 
 # Usage
 
-### No If you would like to use "The "
-~~<h2>First you need to initialize the authentication for the api call</h2>~~
+### Note:
+ No need to initialize the app anymore, we are already using "  "X-API-KEY": "jobboerse-jobsuche" header in all of the requests, which is the authentication needed in the latest update of jobsuche-api <a href="https://github.com/bundesAPI/jobsuche-api#:~:text=Bei%20folgenden%20GET%2Drequests%20ist%20die%20clientId%20als%20Header%2DParameter%20%27X%2DAPI%2DKey%27%20zu%20%C3%BCbergeben">Check Arbeitsagentur Jobsuche API</a>. 
 <del>
+~~<h2>First you need to initialize the authentication for the api call</h2>~~
 /**
  *  client_id and client_secret they are provided in the original docs 
  *  @see https://github.com/bundesAPI/jobsuche-api
