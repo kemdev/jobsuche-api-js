@@ -1,10 +1,9 @@
 
-# Arbeitsagentur Jobsuche API - JS
+# Arbeitsagentur Jobsuche API JS - TS
 
-This project provides a library for interacting with the job search API.
+jobsuche-api-js is a simple JavaScript/TypeScript library designed to interact with the Jobsuche API provided by Job Arbeitsagentur. This project provides a library for interacting with the job search API.
 
 ## Status
-
 **This library is currently in beta.**
 We are actively working on improving the library. Please report any issues you encounter.
 
@@ -12,27 +11,16 @@ We are actively working on improving the library. Please report any issues you e
 ## Installation
 
 ```sh
-npm install jobsuche-api-js@beta
+npm install jobsuche-api-js
 ```
-# jobsuche-api-js
-Fetch Jobs from Arbeitsagentur API
+
+# Overview
+jobsuche-api-js fetches jobs from the Arbeitsagentur API. It simplifies the process of retrieving job listings and details using modern JavaScript techniques.
 
 # Usage
 
 ### Note:
- No need to initialize the app anymore, we are already using "  "X-API-KEY": "jobboerse-jobsuche" header in all of the requests, which is the authentication needed in the latest update of jobsuche-api <a href="https://github.com/bundesAPI/jobsuche-api#:~:text=Bei%20folgenden%20GET%2Drequests%20ist%20die%20clientId%20als%20Header%2DParameter%20%27X%2DAPI%2DKey%27%20zu%20%C3%BCbergeben">Check Arbeitsagentur Jobsuche API</a>. 
-<del>
-~~<h2>First you need to initialize the authentication for the api call</h2>~~
-/**
- *  client_id and client_secret they are provided in the original docs 
- *  @see https://github.com/bundesAPI/jobsuche-api
- */
-const clientId = 'c003a37f-024f-462a-b36d-b001be4cd24a';
-const clientSecret = '32a39620-32b3-4307-9aa1-511e3d7f48a8';
-const auth = () => authManager.initialize(clientId, clientSecret);
-
-</del>
-
+No need to initialize the app anymore, as the "X-API-KEY": "jobboerse-jobsuche" headers are added automatically in all requests. This is the authentication needed in the latest update of the Jobsuche API. For more details, check the <a href="https://github.com/bundesAPI/jobsuche-api#:~:text=Bei%20folgenden%20GET%2Drequests%20ist%20die%20clientId%20als%20Header%2DParameter%20%27X%2DAPI%2DKey%27%20zu%20%C3%BCbergeben">Arbeitsagentur Jobsuche API Documentation</a>. 
 
 ## Fetch Job Search Results
 
@@ -40,7 +28,8 @@ const auth = () => authManager.initialize(clientId, clientSecret);
 import { jobsSearch } from 'jobsuche-api-js';
 
 const searchParams = { what: 'developer', where: 'Berlin' };
-jobsSearch(searchParams).then(response => console.log(response));
+jobsSearch(searchParams).then(response => console.log(response))
+.catch(error => console.error(error));
 ```
 
 ## Fetch Job Details
@@ -48,5 +37,7 @@ jobsSearch(searchParams).then(response => console.log(response));
 import { jobDetails } from 'jobsuche-api-js';
 
 const jobRef = '11112-44023-1558466-0-S';
-jobDetails(jobRef).then(details => console.log(details));
+jobDetails(jobRef).then(details => console.log(details))
+.catch(error => console.error(error));
+
 ```
