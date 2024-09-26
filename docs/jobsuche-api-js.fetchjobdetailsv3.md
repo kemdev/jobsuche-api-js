@@ -4,7 +4,7 @@
 
 ## fetchJobDetailsV3() function
 
-Fetches job details (V3) based on the provided reference number. Note: No OAuth Access Token Required! Only Add 'X-Api-Key': 'jobboerse-jobsuche' to the header.
+Fetches job details (V3) based on the provided reference number. Note: No OAuth Access Token Required! Only Add 'X-Api-Key': 'jobboerse-jobsuche' to the headers.
 
 **Signature:**
 
