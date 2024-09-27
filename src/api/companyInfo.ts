@@ -1,13 +1,13 @@
-import axios from 'axios';
-import { companyInfoLink } from '../constants/urls';
-
-async function fetchCompanyInfo(refnr: string) {
+import axios from "axios";
+import { companyInfoLink } from "../constants/urls";
+import { ICompanyProps } from "../types/jobDetailsResponseV3Types";
+async function fetchCompanyInfo(
+  kundennummerHash: string
+): Promise<ICompanyProps | null> {
   try {
-    // const refNummer = base64.encode(refnr);
-
-    const res = await axios.get(`${companyInfoLink}${refnr}`, {
+    const res = await axios.get(`${companyInfoLink}${kundennummerHash}`, {
       headers: {
-        'X-API-KEY': 'jobboerse-jobsuche',
+        "X-API-KEY": "jobboerse-jobsuche",
       },
     });
 
@@ -15,6 +15,7 @@ async function fetchCompanyInfo(refnr: string) {
 
     return data;
   } catch (err) {
+    console.warn("Failed to fetch company info", err);
     return null;
   }
 }

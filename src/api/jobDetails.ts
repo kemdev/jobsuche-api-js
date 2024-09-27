@@ -1,12 +1,12 @@
-import base64 from 'base-64';
-import axios, { CancelTokenSource } from 'axios';
-import authManager from '../auth/authManager';
-import { IJobDetailsV2ResponseProps } from '../types/jobDetailsResponseV2Types';
-import { IJobDetailsV3ResponseProps } from '../types/jobDetailsResponseV3Types';
-import { header, jobDetailV2Link, jobDetailV3Link } from '../constants/urls';
+import base64 from "base-64";
+import axios, { CancelTokenSource } from "axios";
+import { IJobDetailsV2ResponseProps } from "../types/jobDetailsResponseV2Types";
+import { IJobDetailsV3ResponseProps } from "../types/jobDetailsResponseV3Types";
+import { headers, jobDetailV2Link, jobDetailV3Link } from "../constants/urls";
 
 const DEFAULT_TIMEOUT = 10000; // 10 seconds
 let cancelTokenSource: CancelTokenSource | null = null;
+
 
 /**
  * Fetches job details (V2) based on the provided reference number.
@@ -19,14 +19,7 @@ let cancelTokenSource: CancelTokenSource | null = null;
 async function fetchJobDetailsV2(
   refnr: string
 ): Promise<IJobDetailsV2ResponseProps | null> {
-  // const accessToken = await getJwt();
   const encodedJobRef = base64.encode(refnr);
-
-  const accessToken = await authManager.getAccessToken();
-  const headers = {
-    ...header,
-    OAuthAccessToken: accessToken,
-  };
 
   const url = `${jobDetailV2Link}${encodedJobRef}`;
   try {
@@ -37,9 +30,9 @@ async function fetchJobDetailsV2(
     return response.data;
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
-      console.warn('====error GET JOB DETAILS V2 FUNCTION====', error.message);
+      console.warn("====error GET JOB DETAILS V2 FUNCTION====", error.message);
     } else {
-      console.error('Unexpected error:', error);
+      console.error("Unexpected error:", error);
     }
     return null;
   }
@@ -55,14 +48,14 @@ async function fetchJobDetailsV3(
   refnr: string
 ): Promise<IJobDetailsV3ResponseProps | null> {
   if (cancelTokenSource) {
-    cancelTokenSource.cancel('Operation canceled due to new request.');
+    cancelTokenSource.cancel("Operation canceled due to new request.");
   }
   cancelTokenSource = axios.CancelToken.source();
 
   const encodedJobRef = base64.encode(refnr);
 
   const headers = {
-    'X-Api-Key': 'jobboerse-jobsuche',
+    "X-Api-Key": "jobboerse-jobsuche",
   };
 
   const url = `${jobDetailV3Link}${encodedJobRef}`;
@@ -72,12 +65,21 @@ async function fetchJobDetailsV3(
       timeout: DEFAULT_TIMEOUT,
       cancelToken: cancelTokenSource.token,
     });
+    cancelTokenSource = null;
     return response.data;
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
-      console.warn('====error GET JOB DETAILS V3 FUNCTION====', error.message);
+      console.warn("====error GET JOB DETAILS V3 FUNCTION====", error.message);
+
+      // Retry on timeout
+      if (error.code === "ECONNABORTED" || error.response?.status === 401) {
+        console.log("Retrying to fetch job details...");
+        // Optional: Add a small delay before retrying
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        return await fetchJobDetailsV3(refnr); // Retry the function
+      }
     } else {
-      console.error('Unexpected error:', error);
+      console.error("Unexpected error:", error);
     }
     return null;
   }

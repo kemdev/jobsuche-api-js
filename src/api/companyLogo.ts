@@ -1,6 +1,6 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { companyLogoV3 } from "../constants/urls";
-import { ICompanyAvatar, ICompanyLogoURL } from "../types/company";
+import { ICompanyLogoURL } from "../types/company";
 import { fetchCompanyInfo } from "./companyInfo";
 import { companyLogoReturnHelper } from "../helpers/companyLogoReturnHelper";
 
@@ -22,34 +22,38 @@ const constructAvatarUrl = (name: string): string => {
 
 async function getCompanyLogoURL(
   kundennummerHash: string,
-  getAvatarIfNeeded?: ICompanyAvatar | boolean
+  companyName?: string
 ): Promise<ICompanyLogoURL> {
+  let avatarUrl = null;
+
+  if (companyName) avatarUrl = constructAvatarUrl(companyName);
+  if (!companyName) {
+    const companyInfo = await fetchCompanyInfo(kundennummerHash);
+    if (companyInfo) {
+      avatarUrl = constructAvatarUrl(companyInfo?.firma);
+    }
+  }
+
   try {
     const fullUrl = `${companyLogoV3}/${kundennummerHash}`;
 
     // TODO check this later.
+    // make an axios request to check if the company logo exists.
+    // if there is an error the avatar will be returned.
     const response = await axios.get(fullUrl);
 
     const data = response.data;
 
+    if (!data) {
+      return companyLogoReturnHelper(
+        avatarUrl,
+        false,
+        "Image not found from try!"
+      );
+    }
+
     return companyLogoReturnHelper(fullUrl, fullUrl.length > 0, null);
   } catch (error: any) {
-    let avatarUrl = null;
-
-    if (axios.isAxiosError(error) && error.response?.status === 404) {
-      try {
-        const companyInfo = await fetchCompanyInfo(kundennummerHash);
-        if (companyInfo.firma)
-          avatarUrl = constructAvatarUrl(companyInfo.firma);
-
-        // Return isLogoExist false
-        return companyLogoReturnHelper(avatarUrl, false, null);
-      } catch (e: any) {
-        companyLogoReturnHelper(avatarUrl, false, e.message);
-      }
-
-      return companyLogoReturnHelper(avatarUrl, false, error.message);
-    }
     return companyLogoReturnHelper(avatarUrl, false, error.message);
   }
 }

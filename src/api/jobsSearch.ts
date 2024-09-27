@@ -2,10 +2,7 @@ import { IFetchJobsProps } from "../types/jobsSearchTypes";
 import { JobSearchResponse } from "../types/jobSearchResponseTypes";
 import axios, { CancelTokenSource } from "axios";
 import { paramsToAlias } from "../helpers/paramsToAlias";
-import { jobLink } from "../constants/urls";
-import { header } from "../constants/urls";
-import authManager from "../auth/authManager";
-import searchParamsExample from "../examples/searchParamsExample";
+import { headers, jobLink } from "../constants/urls";
 
 // const authManager = new AuthManager(
 //   'c003a37f-024f-462a-b36d-b001be4cd24a',
@@ -25,16 +22,15 @@ async function jobsSearchOld(
 ): Promise<JobSearchResponse | null> {
   const translatedParams = params ? paramsToAlias(params) : undefined;
   try {
-
     // NOTE No need for this anymore.
     // const accessToken = await authManager.getAccessToken();
     // header.OAuthAccessToken = accessToken;
 
     // NOTE use this for authorization.
-    header["X-Api-Key"] = "jobboerse-jobsuche"; 
+    // header["X-Api-Key"] = "jobboerse-jobsuche";
 
     const response = await axios.get<JobSearchResponse>(jobLink, {
-      headers: header,
+      headers,
       params: translatedParams,
     });
 
@@ -55,25 +51,26 @@ async function jobsSearchOld(
 async function jobsSearch(
   params?: Partial<IFetchJobsProps>
 ): Promise<JobSearchResponse | null> {
-  // if (cancelTokenSource) {
-  //   cancelTokenSource.cancel("Operation canceled due to new request.");
-  // }
+  if (cancelTokenSource) {
+    cancelTokenSource.cancel("Operation canceled due to new request.");
+  }
 
-  // cancelTokenSource = axios.CancelToken.source();
+  cancelTokenSource = axios.CancelToken.source();
 
   const translatedParams = params ? paramsToAlias(params) : undefined;
-  const headers = {
-    "X-Api-Key": "jobboerse-jobsuche",
-  };
+  // const headers = {
+  //   "X-Api-Key": "jobboerse-jobsuche",
+  // };
 
   try {
     const response = await axios.get<JobSearchResponse>(jobLink, {
       headers,
       params: translatedParams,
       timeout: DEFAULT_TIMEOUT, // Add timeout here
-      // cancelToken: cancelTokenSource.token,
+      cancelToken: cancelTokenSource.token,
     });
 
+    cancelTokenSource = null; // reset cancel token
     const data: JobSearchResponse = response.data;
     return data;
   } catch (error: any) {

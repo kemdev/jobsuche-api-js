@@ -91,6 +91,11 @@ interface IFetchJobsProps {
    * Multiple semicolon-separated values are possible (e.g., workTime=vz;tz).
    */
   workTime: WorkTime[];
+
+  /**
+   * to allow any additional properties
+   */
+  [key: string]: any; // to allow any additional properties
 }
 
 // Define a type that maps English aliases to corresponding keys of IFetchJobsProps

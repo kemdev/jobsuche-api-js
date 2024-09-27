@@ -1,5 +1,5 @@
 interface JobOffer {
-  title: string;
+  titel: string;
   hashId: string;
   beruf: string;
   refnr: string;
