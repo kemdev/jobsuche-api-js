@@ -2,7 +2,7 @@ import base64 from "base-64";
 import axios, { CancelTokenSource } from "axios";
 import { IJobDetailsV2ResponseProps } from "../types/jobDetailsResponseV2Types";
 import { IJobDetailsV3ResponseProps } from "../types/jobDetailsResponseV3Types";
-import { headers, jobDetailV2Link, jobDetailV3Link } from "../constants/urls";
+import { headers, jobDetailV2Link, jobDetailV3Link } from "@constants/urls";
 
 const DEFAULT_TIMEOUT = 10000; // 10 seconds
 let cancelTokenSource: CancelTokenSource | null = null;

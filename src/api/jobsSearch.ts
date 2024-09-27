@@ -2,7 +2,7 @@ import { IFetchJobsProps } from "../types/jobsSearchTypes";
 import { JobSearchResponse } from "../types/jobSearchResponseTypes";
 import axios, { CancelTokenSource } from "axios";
 import { paramsToAlias } from "../helpers/paramsToAlias";
-import { headers, jobLink } from "../constants/urls";
+import { headers, jobLink } from "@constants/urls";
 
 // const authManager = new AuthManager(
 //   'c003a37f-024f-462a-b36d-b001be4cd24a',
