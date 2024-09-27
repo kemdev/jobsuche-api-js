@@ -3,7 +3,7 @@ name: Publish to npm
 on:
   push:
     tags:
-      - 'v*.*.*'  # Trigger this workflow only for version tags, e.g., v1.0.0
+      - "v*.*.*" # Trigger this workflow only for version tags, e.g., v1.0.0
 
 jobs:
   publish:
@@ -15,17 +15,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm install
 
       - name: Build project
-        run: npm run build  # This runs your TypeScript compiler (tsc)
-
-      - name: Prepublish step (optional)
-        run: npm run prepublishOnly  # This runs your `tsc` and any pre-publish steps
+        run: npm run prepublishOnly # This runs your TypeScript compiler (tsc)
 
       - name: Publish to npm
         run: npm publish --access public
