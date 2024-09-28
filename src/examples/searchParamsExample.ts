@@ -1,8 +1,8 @@
 import { paramsToAlias } from '../helpers/paramsToAlias';
-import { IFetchArbeitsAgenturJobsProps } from '../types/ArbeitsAgenturJobsTypes';
+import { IArbeitsAgenturJobArgsProps } from '../types/arbeitsAgenturJobArgsTypes';
 
 // Example usage:
-export const searchParamsExample: Partial<IFetchArbeitsAgenturJobsProps> = {
+export const searchParamsExample: Partial<IArbeitsAgenturJobArgsProps> = {
   what: 'Software Developer',
   where: 'Berlin',
   radius: 25,

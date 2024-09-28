@@ -1,4 +1,4 @@
-import { IFetchArbeitsAgenturJobsProps } from "../types/ArbeitsAgenturJobsTypes";
+import { IArbeitsAgenturJobArgsProps } from "../types/arbeitsAgenturJobArgsTypes";
 import { JobSearchResponse } from "../types/jobSearchResponseTypes";
 import axios, { CancelTokenSource } from "axios";
 import { paramsToAlias } from "../helpers/paramsToAlias";
@@ -14,11 +14,11 @@ let cancelTokenSource: CancelTokenSource | null = null;
 
 /**
  * Fetches job search results based on the provided parameters.
- * @param {Partial<IFetchArbeitsAgenturJobsProps>} [params] - The search parameters (optional).
+ * @param {Partial<IArbeitsAgenturJobArgsProps>} [params] - The search parameters (optional).
  * @returns {Promise<JobSearchResponse | null>} - The job search results.
  */
 async function jobsSearchOld(
-  params?: Partial<IFetchArbeitsAgenturJobsProps>
+  params?: Partial<IArbeitsAgenturJobArgsProps>
 ): Promise<JobSearchResponse | null> {
   const translatedParams = params ? paramsToAlias(params) : undefined;
   try {
@@ -45,11 +45,11 @@ async function jobsSearchOld(
 /**
  * @function jobsSearch without OAuth access token it is using the new auth header "X-Api-Key"
  * Fetches job search results based on the provided parameters.
- * @param {Partial<IFetchArbeitsAgenturJobsProps>} [params] - The search parameters (optional).
+ * @param {Partial<IArbeitsAgenturJobArgsProps>} [params] - The search parameters (optional).
  * @returns {Promise<JobSearchResponse | null>} - The job search results.
  */
 async function jobsSearch(
-  params?: Partial<IFetchArbeitsAgenturJobsProps>
+  params?: Partial<IArbeitsAgenturJobArgsProps>
 ): Promise<JobSearchResponse | null> {
   if (cancelTokenSource) {
     cancelTokenSource.cancel("Operation canceled due to new request.");

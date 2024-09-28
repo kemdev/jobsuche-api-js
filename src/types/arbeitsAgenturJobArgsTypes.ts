@@ -16,7 +16,7 @@ type WorkTime = 'vz' | 'tz' | 'snw' | 'ho' | 'mj';
  *  #:~:text=Parametern%20zu%20filtern%3A-,Filter,-Parameter%3A%20was
  */
 
-interface IFetchArbeitsAgenturJobsProps {
+interface IArbeitsAgenturJobArgsProps {
   /**
    * @alias was
    */
@@ -98,21 +98,21 @@ interface IFetchArbeitsAgenturJobsProps {
   [key: string]: any; // to allow any additional properties
 }
 
-// Define a type that maps English aliases to corresponding keys of IFetchArbeitsAgenturJobsProps
+// Define a type that maps English aliases to corresponding keys of IArbeitsAgenturJobArgsProps
 type AliasMapping = {
-  what: keyof IFetchArbeitsAgenturJobsProps;
-  where: keyof IFetchArbeitsAgenturJobsProps;
-  professionalField: keyof IFetchArbeitsAgenturJobsProps;
-  page: keyof IFetchArbeitsAgenturJobsProps;
-  employer: keyof IFetchArbeitsAgenturJobsProps;
-  isTemporary: keyof IFetchArbeitsAgenturJobsProps;
-  size: keyof IFetchArbeitsAgenturJobsProps;
-  publishedSince: keyof IFetchArbeitsAgenturJobsProps;
-  isPrivate: keyof IFetchArbeitsAgenturJobsProps;
-  offerType: keyof IFetchArbeitsAgenturJobsProps;
-  contractDuration: keyof IFetchArbeitsAgenturJobsProps;
-  radius: keyof IFetchArbeitsAgenturJobsProps;
-  workTime: keyof IFetchArbeitsAgenturJobsProps;
+  what: keyof IArbeitsAgenturJobArgsProps;
+  where: keyof IArbeitsAgenturJobArgsProps;
+  professionalField: keyof IArbeitsAgenturJobArgsProps;
+  page: keyof IArbeitsAgenturJobArgsProps;
+  employer: keyof IArbeitsAgenturJobArgsProps;
+  isTemporary: keyof IArbeitsAgenturJobArgsProps;
+  size: keyof IArbeitsAgenturJobArgsProps;
+  publishedSince: keyof IArbeitsAgenturJobArgsProps;
+  isPrivate: keyof IArbeitsAgenturJobArgsProps;
+  offerType: keyof IArbeitsAgenturJobArgsProps;
+  contractDuration: keyof IArbeitsAgenturJobArgsProps;
+  radius: keyof IArbeitsAgenturJobArgsProps;
+  workTime: keyof IArbeitsAgenturJobArgsProps;
 };
 
-export { IFetchArbeitsAgenturJobsProps, AliasMapping, WorkTime };
+export { IArbeitsAgenturJobArgsProps, AliasMapping, WorkTime };

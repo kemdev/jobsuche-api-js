@@ -31,17 +31,17 @@ export function getCompanyLogoURL(kundennummerHash: string, getAvatarIfNeeded?: 
 // @public (undocumented)
 export function getJwt(): Promise<string | {}>;
 
-// Warning: (ae-forgotten-export) The symbol "IFetchArbeitsAgenturJobsProps" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "IArbeitsAgenturJobArgsProps" needs to be exported by the entry point index.d.ts
 // Warning: (ae-forgotten-export) The symbol "JobSearchResponse" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function jobsSearch(params?: Partial<IFetchArbeitsAgenturJobsProps>): Promise<JobSearchResponse | null>;
+export function jobsSearch(params?: Partial<IArbeitsAgenturJobArgsProps>): Promise<JobSearchResponse | null>;
 
 // @public
-export function jobsSearchOld(params?: Partial<IFetchArbeitsAgenturJobsProps>): Promise<JobSearchResponse | null>;
+export function jobsSearchOld(params?: Partial<IArbeitsAgenturJobArgsProps>): Promise<JobSearchResponse | null>;
 
 // @public (undocumented)
-export const searchParamsExample: Partial<IFetchArbeitsAgenturJobsProps>;
+export const searchParamsExample: Partial<IArbeitsAgenturJobArgsProps>;
 
 // (No @packageDocumentation comment for this package)
 
