@@ -1,4 +1,4 @@
-import { ICompanyLogoURL } from '../types/company';
+import { ICompanyLogoURL } from '../types/companyLogo';
 
 function companyLogoReturnHelper(
   url: ICompanyLogoURL['url'],
