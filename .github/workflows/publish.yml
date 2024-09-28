@@ -21,11 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build project
-        run: npm run build # This runs your TypeScript compiler (tsc)
-
       - name: List all files in constants directory
         run: find . -type d -name "constant"
+
+      - name: Build project
+        run: npm run build # This runs your TypeScript compiler (tsc)
 
 
       - name: Publish to npm
