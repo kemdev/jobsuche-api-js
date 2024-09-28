@@ -9,7 +9,7 @@
 **Signature:**
 
 ```typescript
-declare function jobsSearch(params?: Partial<IFetchJobsProps>): Promise<JobSearchResponse | null>;
+declare function jobsSearch(params?: Partial<IFetchArbeitsAgenturJobsProps>): Promise<JobSearchResponse | null>;
 ```
 
 ## Parameters
@@ -37,7 +37,7 @@ params
 
 </td><td>
 
-Partial&lt;IFetchJobsProps&gt;
+Partial&lt;IFetchArbeitsAgenturJobsProps&gt;
 
 
 </td><td>

@@ -7,7 +7,6 @@ import { headers, jobDetailV2Link, jobDetailV3Link } from "../constants/urls";
 const DEFAULT_TIMEOUT = 10000; // 10 seconds
 let cancelTokenSource: CancelTokenSource | null = null;
 
-
 /**
  * Fetches job details (V2) based on the provided reference number.
  * @param {string} refnr from the response of the jobSearch function.
@@ -80,6 +79,7 @@ async function fetchJobDetailsV3(
       }
     } else {
       console.error("Unexpected error:", error);
+      return null;
     }
     return null;
   }

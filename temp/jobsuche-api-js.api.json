@@ -497,8 +497,8 @@
             },
             {
               "kind": "Reference",
-              "text": "IFetchJobsProps",
-              "canonicalReference": "jobsuche-api-js!~IFetchJobsProps:interface"
+              "text": "IFetchArbeitsAgenturJobsProps",
+              "canonicalReference": "jobsuche-api-js!~IFetchArbeitsAgenturJobsProps:interface"
             },
             {
               "kind": "Content",
@@ -570,8 +570,8 @@
             },
             {
               "kind": "Reference",
-              "text": "IFetchJobsProps",
-              "canonicalReference": "jobsuche-api-js!~IFetchJobsProps:interface"
+              "text": "IFetchArbeitsAgenturJobsProps",
+              "canonicalReference": "jobsuche-api-js!~IFetchArbeitsAgenturJobsProps:interface"
             },
             {
               "kind": "Content",
@@ -643,8 +643,8 @@
             },
             {
               "kind": "Reference",
-              "text": "IFetchJobsProps",
-              "canonicalReference": "jobsuche-api-js!~IFetchJobsProps:interface"
+              "text": "IFetchArbeitsAgenturJobsProps",
+              "canonicalReference": "jobsuche-api-js!~IFetchArbeitsAgenturJobsProps:interface"
             },
             {
               "kind": "Content",

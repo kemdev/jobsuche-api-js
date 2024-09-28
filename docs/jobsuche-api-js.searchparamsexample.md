@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-searchParamsExample: Partial<IFetchJobsProps>
+searchParamsExample: Partial<IFetchArbeitsAgenturJobsProps>
 ```

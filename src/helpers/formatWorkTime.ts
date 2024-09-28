@@ -1,4 +1,4 @@
-import { WorkTime } from '../types/jobsSearchTypes';
+import { WorkTime } from '../types/ArbeitsAgenturJobsTypes';
 
 function formatWorkTime(workTimes: WorkTime[]): string {
   return workTimes.join(';');

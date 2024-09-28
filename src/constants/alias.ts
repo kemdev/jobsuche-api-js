@@ -1,6 +1,6 @@
-import { IFetchJobsProps } from "../types/jobsSearchTypes";
+import { IFetchArbeitsAgenturJobsProps } from "../types/ArbeitsAgenturJobsTypes";
 
-const aliasMapping: Record<keyof IFetchJobsProps, string> = {
+const aliasMapping: Record<keyof IFetchArbeitsAgenturJobsProps, string> = {
   what: "was",
   where: "wo",
   professionalField: "berufsfeld",

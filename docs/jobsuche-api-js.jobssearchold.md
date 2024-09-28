@@ -9,7 +9,7 @@ Fetches job search results based on the provided parameters.
 **Signature:**
 
 ```typescript
-declare function jobsSearchOld(params?: Partial<IFetchJobsProps>): Promise<JobSearchResponse | null>;
+declare function jobsSearchOld(params?: Partial<IFetchArbeitsAgenturJobsProps>): Promise<JobSearchResponse | null>;
 ```
 
 ## Parameters
@@ -37,7 +37,7 @@ params
 
 </td><td>
 
-Partial&lt;IFetchJobsProps&gt;
+Partial&lt;IFetchArbeitsAgenturJobsProps&gt;
 
 
 </td><td>

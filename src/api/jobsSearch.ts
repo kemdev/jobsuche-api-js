@@ -1,4 +1,4 @@
-import { IFetchJobsProps } from "../types/jobsSearchTypes";
+import { IFetchArbeitsAgenturJobsProps } from "../types/ArbeitsAgenturJobsTypes";
 import { JobSearchResponse } from "../types/jobSearchResponseTypes";
 import axios, { CancelTokenSource } from "axios";
 import { paramsToAlias } from "../helpers/paramsToAlias";
@@ -14,11 +14,11 @@ let cancelTokenSource: CancelTokenSource | null = null;
 
 /**
  * Fetches job search results based on the provided parameters.
- * @param {Partial<IFetchJobsProps>} [params] - The search parameters (optional).
+ * @param {Partial<IFetchArbeitsAgenturJobsProps>} [params] - The search parameters (optional).
  * @returns {Promise<JobSearchResponse | null>} - The job search results.
  */
 async function jobsSearchOld(
-  params?: Partial<IFetchJobsProps>
+  params?: Partial<IFetchArbeitsAgenturJobsProps>
 ): Promise<JobSearchResponse | null> {
   const translatedParams = params ? paramsToAlias(params) : undefined;
   try {
@@ -45,11 +45,11 @@ async function jobsSearchOld(
 /**
  * @function jobsSearch without OAuth access token it is using the new auth header "X-Api-Key"
  * Fetches job search results based on the provided parameters.
- * @param {Partial<IFetchJobsProps>} [params] - The search parameters (optional).
+ * @param {Partial<IFetchArbeitsAgenturJobsProps>} [params] - The search parameters (optional).
  * @returns {Promise<JobSearchResponse | null>} - The job search results.
  */
 async function jobsSearch(
-  params?: Partial<IFetchJobsProps>
+  params?: Partial<IFetchArbeitsAgenturJobsProps>
 ): Promise<JobSearchResponse | null> {
   if (cancelTokenSource) {
     cancelTokenSource.cancel("Operation canceled due to new request.");
@@ -74,6 +74,17 @@ async function jobsSearch(
     const data: JobSearchResponse = response.data;
     return data;
   } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      console.warn("====error GET JOB DETAILS V3 FUNCTION====", error.message);
+
+      // Retry on timeout
+      if (error.code === "ECONNABORTED" || error.response?.status === 401) {
+        console.log("Retrying to fetch job details...");
+        // Optional: Add a small delay before retrying
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        return await jobsSearch(); // Retry the function
+      }
+    }
     console.error("Error fetching job search results:", error.message);
     return null;
   }
