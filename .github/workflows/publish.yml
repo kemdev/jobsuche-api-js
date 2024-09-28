@@ -12,9 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: List all files in constants directory
-        run: ls -al src/constants
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -26,6 +23,10 @@ jobs:
 
       - name: Build project
         run: npm run build # This runs your TypeScript compiler (tsc)
+
+      - name: List all files in constants directory
+        run: find . -type d -name "constant"
+
 
       - name: Publish to npm
         run: npm publish --access public
