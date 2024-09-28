@@ -1,6 +1,6 @@
 import axios from 'axios';
 import querystring from 'querystring';
-import { authSuffix, host } from '@constants/urls';
+import { authSuffix, host } from '../constants/urls';
 
 async function getJwt(): Promise<string | {}> {
   const data = querystring.stringify({

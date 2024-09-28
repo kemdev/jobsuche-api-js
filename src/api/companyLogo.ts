@@ -1,5 +1,5 @@
 import axios from "axios";
-import { companyLogoV3 } from "@constants/urls";
+import { companyLogoV3 } from "../constants/urls";
 import { ICompanyLogoURL } from "../types/company";
 import { fetchCompanyInfo } from "./companyInfo";
 import { companyLogoReturnHelper } from "../helpers/companyLogoReturnHelper";

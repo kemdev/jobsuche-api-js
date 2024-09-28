@@ -1,4 +1,4 @@
-import { aliasMapping } from '@constants/alias';
+import { aliasMapping } from '../constants/alias';
 import { IFetchJobsProps, WorkTime } from '../types/jobsSearchTypes';
 
 function paramsToAlias(params?: Partial<IFetchJobsProps>) {

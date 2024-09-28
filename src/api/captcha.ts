@@ -1,4 +1,4 @@
-import { host, https } from "@constants/urls";
+import { host, https } from "../constants/urls";
 
 // "https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/pc/v3";
 

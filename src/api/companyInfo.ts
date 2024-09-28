@@ -1,5 +1,5 @@
 import axios from "axios";
-import { companyInfoLink } from "@constants/urls";
+import { companyInfoLink } from "../constants/urls";
 import { ICompanyProps } from "../types/jobDetailsResponseV3Types";
 async function fetchCompanyInfo(
   kundennummerHash: string
