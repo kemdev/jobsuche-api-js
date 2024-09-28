@@ -3,32 +3,35 @@ name: Publish to npm
 on:
   push:
     tags:
-      - "v*.*.*" # Trigger this workflow only for version tags, e.g., v1.0.0
+    - "v*.*.*" # Trigger this workflow only for version tags, e.g., v1.0.0
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20"
-          cache: "npm"
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "20"
+        cache: "npm"
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: List all files in constants directory
-        run: find . -type d -name "constant"
+    - name: List all files in constants directory
+      run: find . -type d -name "constant"
 
-      - name: Build project
-        run: npm run build # This runs your TypeScript compiler (tsc)
+    - name: Build project
+      run: npm run build # This runs your TypeScript compiler (tsc)
 
+    - name: List compiled files
+      run: ls -R ./lib/
 
-      - name: Publish to npm
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - name: Publish to npm
+      run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
