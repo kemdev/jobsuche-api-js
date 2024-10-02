@@ -60,7 +60,7 @@ interface Facets {
 // Define the main JobSearchResponse structure
 interface JobSearchResponse {
   stellenangebote: JobOffer[];
-  maxErgebnisse: string;
+  maxErgebnisse: number;
   page: number;
   size: number;
   facetten: Facets[];

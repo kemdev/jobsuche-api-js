@@ -1,9 +1,9 @@
 import axios from "axios";
 import { companyInfoLink } from "../constants/urls";
-import { ICompanyProps } from "../types/jobDetailsResponseV3Types";
+import { ICompanyInfoProps } from "../types/jobDetailsResponseV3Types";
 async function fetchCompanyInfo(
   kundennummerHash: string
-): Promise<ICompanyProps | null> {
+): Promise<ICompanyInfoProps | null> {
   try {
     const res = await axios.get(`${companyInfoLink}${kundennummerHash}`, {
       headers: {

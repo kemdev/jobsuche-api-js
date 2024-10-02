@@ -71,7 +71,7 @@ interface ILinks {
 }
 
 // Main Company Type
-interface ICompanyProps {
+interface ICompanyInfoProps {
   firma: string;
   betriebsgroesse: string;
   beschreibung: string;
@@ -93,5 +93,5 @@ export type {
   IEintrittszeitraum,
   IJobDetailsV3ResponseProps,
   ILinks,
-  ICompanyProps,
+  ICompanyInfoProps,
 };

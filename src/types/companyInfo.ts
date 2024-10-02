@@ -26,7 +26,7 @@ interface Angebotskontakt {
   emailadresse: string;
 }
 
-interface ICompanyInfo {
+interface IOfferCompanyInfo {
   angebotskontakt: Angebotskontakt;
   bewerbungUeberArbeitsagenturDe: boolean;
   bewerbungPerEMail: boolean;
@@ -38,4 +38,4 @@ interface ICompanyInfo {
   geforderteAnlagen: string;
 }
 
-export type { ICompanyInfo };
+export type { IOfferCompanyInfo };
