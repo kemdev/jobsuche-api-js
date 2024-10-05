@@ -10,8 +10,10 @@ import { IJobDetailsV2ResponseProps } from "./jobDetailsResponseV2Types";
 import {
   IJobDetailsV3ResponseProps,
   ICompanyInfoProps,
+  IStellenlokation,
 } from "./jobDetailsResponseV3Types";
 import { JobSearchResponse, JobOffer } from "./jobSearchResponseTypes";
+import { GroupedByRegion, IOffersLocationsInterface } from "./helpers-types";
 
 export type {
   IArbeitsAgenturJobArgsProps,
@@ -26,4 +28,7 @@ export type {
   ICompanyInfoProps,
   JobSearchResponse,
   JobOffer,
+  IStellenlokation,
+  GroupedByRegion,
+  IOffersLocationsInterface,
 };

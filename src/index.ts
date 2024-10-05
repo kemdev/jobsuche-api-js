@@ -5,7 +5,7 @@ import { fetchJobDetailsV3, fetchJobDetailsV2 } from "./api/jobDetails";
 import authManager from "./auth/authManager";
 import { getCompanyLogoURL } from "./api/companyLogo";
 import { fetchCompanyInfo } from "./api/companyInfo";
-
+import { offersLocations } from './helpers/helpers'; 
 export {
   getJwt,
   jobsSearch,
@@ -16,4 +16,5 @@ export {
   authManager,
   getCompanyLogoURL,
   fetchCompanyInfo,
+  offersLocations,
 };

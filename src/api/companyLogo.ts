@@ -27,11 +27,15 @@ async function getCompanyLogoURL(
   let avatarUrl = null;
 
   if (companyName) avatarUrl = constructAvatarUrl(companyName);
-  if (!companyName) {
+  if (!companyName && kundennummerHash) {
     const companyInfo = await fetchCompanyInfo(kundennummerHash);
     if (companyInfo) {
       avatarUrl = constructAvatarUrl(companyInfo?.firma);
     }
+  }
+
+  if (!kundennummerHash) {
+    return companyLogoReturnHelper(avatarUrl, false, null);
   }
 
   try {
