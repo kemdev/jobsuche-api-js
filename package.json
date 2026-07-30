@@ -45,7 +45,7 @@
     "typescript": "^5.5.2"
   },
   "engines": {
-    "node": ">=24"
+    "node": ">=22"
   },
   "dependencies": {
     "@microsoft/api-documenter": "^7.30.10",
