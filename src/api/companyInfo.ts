@@ -20,4 +20,10 @@ async function fetchCompanyInfo(
   }
 }
 
-export { fetchCompanyInfo };
+async function getCompanyInfo(
+  kundennummerHash: string
+): Promise<ICompanyInfoProps | null> {
+  return fetchCompanyInfo(kundennummerHash);
+}
+
+export { fetchCompanyInfo, getCompanyInfo };

@@ -71,7 +71,7 @@ interface JobDetailsFuehrungskompetenzen {
   hatBudgetverantwortung: string;
 }
 
-export {
+export type {
   IJobDetailsV2ResponseProps,
   JobDetailsArbeitgeberAdresse,
   JobDetailsArbeitsorteInner,

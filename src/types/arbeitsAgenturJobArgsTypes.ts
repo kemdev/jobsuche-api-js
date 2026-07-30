@@ -66,6 +66,20 @@ interface IArbeitsAgenturJobArgsProps {
     | undefined /* Private Arbeitsvermittlung: Gibt an, ob Jobs von privaten Arbeitsvermittlungen in die Suchergebnisse einbezogen werden sollen. */;
 
   /**
+   * @alias behinderung
+   */
+  isDisabled:
+    | boolean
+    | undefined /* Gibt an, ob nur Jobs für schwerbehinderte Menschen angezeigt werden sollen. */;
+
+  /**
+   * @alias corona
+   */
+  isCorona:
+    | boolean
+    | undefined /* Gibt an, ob nur Jobs im Kontext von Corona angezeigt werden sollen. */;
+
+  /**
    * @alias angebotsart
    * @accepts numbers or string of 1 | 2 | 4 | 34
    * Angebotsart: 1=ARBEIT; 2=SELBSTAENDIGKEIT; 4=AUSBILDUNG/Duales Studium; 34=Praktikum/Trainee.
@@ -84,6 +98,11 @@ interface IArbeitsAgenturJobArgsProps {
    * Umkreis: in Kilometern von Wo-Parameter (z.B. 25 oder 200).
    */
   radius: number;
+
+  /**
+   * @alias beruf
+   */
+  occupation: string | undefined;
 
   /**
    * @alias arbeitszeit (Optional)
@@ -113,6 +132,9 @@ type AliasMapping = {
   contractDuration: keyof IArbeitsAgenturJobArgsProps;
   radius: keyof IArbeitsAgenturJobArgsProps;
   workTime: keyof IArbeitsAgenturJobArgsProps;
+  isDisabled: keyof IArbeitsAgenturJobArgsProps;
+  isCorona: keyof IArbeitsAgenturJobArgsProps;
+  occupation: keyof IArbeitsAgenturJobArgsProps;
 };
 
-export { IArbeitsAgenturJobArgsProps, AliasMapping, WorkTime };
+export type { IArbeitsAgenturJobArgsProps, AliasMapping, WorkTime };

@@ -19,7 +19,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[fetchCompanyInfo(refnr)](./jobsuche-api-js.fetchcompanyinfo.md)
+[fetchCompanyInfo(kundennummerHash)](./jobsuche-api-js.fetchcompanyinfo.md)
 
 
 </td><td>
@@ -33,8 +33,6 @@ Description
 
 </td><td>
 
-Fetches job details (V2) based on the provided reference number.
-
 
 </td></tr>
 <tr><td>
@@ -44,13 +42,38 @@ Fetches job details (V2) based on the provided reference number.
 
 </td><td>
 
-Fetches job details (V3) based on the provided reference number. Note: No OAuth Access Token Required! Only Add 'X-Api-Key': 'jobboerse-jobsuche' to the header.
+
+</td></tr>
+<tr><td>
+
+[getCompanyInfo(kundennummerHash)](./jobsuche-api-js.getcompanyinfo.md)
+
+
+</td><td>
 
 
 </td></tr>
 <tr><td>
 
-[getCompanyLogoURL(kundennummerHash, getAvatarIfNeeded)](./jobsuche-api-js.getcompanylogourl.md)
+[getCompanyLogo(kundennummerHash, companyName)](./jobsuche-api-js.getcompanylogo.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[getCompanyLogoURL(kundennummerHash, companyName)](./jobsuche-api-js.getcompanylogourl.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[getJobDetails(refnr, version)](./jobsuche-api-js.getjobdetails.md)
 
 
 </td><td>
@@ -68,7 +91,7 @@ Fetches job details (V3) based on the provided reference number. Note: No OAuth 
 </td></tr>
 <tr><td>
 
-[jobsSearch(params)](./jobsuche-api-js.jobssearch.md)
+[jobsSearch(params, version)](./jobsuche-api-js.jobssearch.md)
 
 
 </td><td>
@@ -79,12 +102,10 @@ Fetches job details (V3) based on the provided reference number. Note: No OAuth 
 </td></tr>
 <tr><td>
 
-[jobsSearchOld(params)](./jobsuche-api-js.jobssearchold.md)
+[offersLocations(jobsOfferLocations)](./jobsuche-api-js.offerslocations.md)
 
 
 </td><td>
-
-Fetches job search results based on the provided parameters.
 
 
 </td></tr>
@@ -122,3 +143,4 @@ Description
 
 </td></tr>
 </tbody></table>
+

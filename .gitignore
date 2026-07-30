@@ -133,3 +133,8 @@ lib
 
 # Push And Publish bash
 tagAndPublish.sh
+
+# Bun and Package locks
+bun.lockb
+bun.lock
+package-lock.json

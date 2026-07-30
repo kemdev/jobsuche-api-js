@@ -7,7 +7,7 @@
 **Signature:**
 
 ```typescript
-declare function fetchCompanyInfo(refnr: string): Promise<any>;
+declare function fetchCompanyInfo(kundennummerHash: string): Promise<ICompanyInfoProps | null>;
 ```
 
 ## Parameters
@@ -30,7 +30,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-refnr
+kundennummerHash
 
 
 </td><td>
@@ -43,7 +43,8 @@ string
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-Promise&lt;any&gt;
+Promise&lt;ICompanyInfoProps \| null&gt;
 

@@ -62,4 +62,11 @@ async function getCompanyLogoURL(
   }
 }
 
-export { getCompanyLogoURL };
+async function getCompanyLogo(
+  kundennummerHash: string,
+  companyName?: string
+): Promise<ICompanyLogoURL> {
+  return getCompanyLogoURL(kundennummerHash, companyName);
+}
+
+export { getCompanyLogoURL, getCompanyLogo };

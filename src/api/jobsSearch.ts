@@ -2,7 +2,7 @@ import { IArbeitsAgenturJobArgsProps } from "../types/arbeitsAgenturJobArgsTypes
 import { JobSearchResponse } from "../types/jobSearchResponseTypes";
 import axios, { CancelTokenSource } from "axios";
 import { paramsToAlias } from "../helpers/paramsToAlias";
-import { headers, jobLink } from "../constants/urls";
+import { headers, jobLinkV6, jobLinkV4 } from "../constants/urls";
 
 // const authManager = new AuthManager(
 //   'c003a37f-024f-462a-b36d-b001be4cd24a',
@@ -12,44 +12,27 @@ import { headers, jobLink } from "../constants/urls";
 const DEFAULT_TIMEOUT = 10000; // 10 seconds
 let cancelTokenSource: CancelTokenSource | null = null;
 
-/**
- * Fetches job search results based on the provided parameters.
- * @param {Partial<IArbeitsAgenturJobArgsProps>} [params] - The search parameters (optional).
- * @returns {Promise<JobSearchResponse | null>} - The job search results.
- */
-async function jobsSearchOld(
-  params?: Partial<IArbeitsAgenturJobArgsProps>
-): Promise<JobSearchResponse | null> {
-  const translatedParams = params ? paramsToAlias(params) : undefined;
-  try {
-    // NOTE No need for this anymore.
-    // const accessToken = await authManager.getAccessToken();
-    // header.OAuthAccessToken = accessToken;
-
-    // NOTE use this for authorization.
-    // header["X-Api-Key"] = "jobboerse-jobsuche";
-
-    const response = await axios.get<JobSearchResponse>(jobLink, {
-      headers,
-      params: translatedParams,
-    });
-
-    const data: JobSearchResponse = response.data;
-    return data;
-  } catch (error: any) {
-    console.error("Error fetching job search results:", error.message);
-    return null;
-  }
-}
+// /**
+//  * Fetches job search results based on the provided parameters.
+//  * @param {Partial<IArbeitsAgenturJobArgsProps>} [params] - The search parameters (optional).
+//  * @returns {Promise<JobSearchResponse | null>} - The job search results.
+//  */
+// async function jobsSearchOld(
+//   params?: Partial<IArbeitsAgenturJobArgsProps>,
+// ): Promise<JobSearchResponse | null> {
+//   return jobsSearch();
+// }
 
 /**
  * @function jobsSearch without OAuth access token it is using the new auth header "X-Api-Key"
  * Fetches job search results based on the provided parameters.
  * @param {Partial<IArbeitsAgenturJobArgsProps>} [params] - The search parameters (optional).
+ * @param {number} [version=6] - The API version to use (default is latest).
  * @returns {Promise<JobSearchResponse | null>} - The job search results.
  */
 async function jobsSearch(
-  params?: Partial<IArbeitsAgenturJobArgsProps>
+  params?: Partial<IArbeitsAgenturJobArgsProps>,
+  version: number = 6,
 ): Promise<JobSearchResponse | null> {
   if (cancelTokenSource) {
     cancelTokenSource.cancel("Operation canceled due to new request.");
@@ -58,31 +41,29 @@ async function jobsSearch(
   cancelTokenSource = axios.CancelToken.source();
 
   const translatedParams = params ? paramsToAlias(params) : undefined;
-  // const headers = {
-  //   "X-Api-Key": "jobboerse-jobsuche",
-  // };
 
   try {
+    let jobLink = jobLinkV6;
+    if (version === 4) {
+      jobLink = jobLinkV4;
+    }
+
     const response = await axios.get<JobSearchResponse>(jobLink, {
       headers,
       params: translatedParams,
-      timeout: DEFAULT_TIMEOUT, // Add timeout here
+      timeout: DEFAULT_TIMEOUT,
       cancelToken: cancelTokenSource.token,
     });
 
-    cancelTokenSource = null; // reset cancel token
-    const data: JobSearchResponse = response.data;
-    return data;
+    cancelTokenSource = null;
+    return response.data;
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
-      console.warn("====error GET JOB DETAILS V3 FUNCTION====", error.message);
+      console.warn("====error GET JOB SEARCH FUNCTION====", error.message);
 
-      // Retry on timeout
       if (error.code === "ECONNABORTED" || error.response?.status === 401) {
-        console.log("Retrying to fetch job details...");
-        // Optional: Add a small delay before retrying
         await new Promise((resolve) => setTimeout(resolve, 1000));
-        return await jobsSearch(); // Retry the function
+        return await jobsSearch(params, version);
       }
     }
     console.error("Error fetching job search results:", error.message);
@@ -90,4 +71,11 @@ async function jobsSearch(
   }
 }
 
-export { jobsSearchOld, jobsSearch };
+// async function jobsSearch(
+//   params?: Partial<IArbeitsAgenturJobArgsProps>,
+//   version: number = 6,
+// ): Promise<JobSearchResponse | null> {
+//   return searchJobs(params, version);
+// }
+
+export { jobsSearch };

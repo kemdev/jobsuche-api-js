@@ -9,7 +9,7 @@
 **Signature:**
 
 ```typescript
-declare function jobsSearch(params?: Partial<IArbeitsAgenturJobArgsProps>): Promise<JobSearchResponse | null>;
+declare function jobsSearch(params?: Partial<IArbeitsAgenturJobArgsProps>, version?: number): Promise<JobSearchResponse | null>;
 ```
 
 ## Parameters
@@ -46,7 +46,24 @@ _(Optional)_ The search parameters (optional).
 
 
 </td></tr>
+<tr><td>
+
+version
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The API version to use (default is latest).
+
+
+</td></tr>
 </tbody></table>
+
 **Returns:**
 
 Promise&lt;JobSearchResponse \| null&gt;

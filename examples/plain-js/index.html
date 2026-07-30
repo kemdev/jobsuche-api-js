@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jobsuche API demo</title>
+  </head>
+  <body>
+    <h1>Jobsuche API demo</h1>
+    <div id="app">Loading…</div>
+    <script type="module">
+      import { searchJobs } from '../../lib/esm/index.js';
+
+      const app = document.getElementById('app');
+      const jobs = await searchJobs({ what: 'developer', where: 'Berlin', page: 1, size: 3 });
+      app.innerHTML = `<pre>${JSON.stringify(jobs, null, 2)}</pre>`;
+    </script>
+  </body>
+</html>

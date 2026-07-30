@@ -5,4 +5,4 @@ interface CaptchaTypes {
 }
 
 
-export { CaptchaTypes };
+export type { CaptchaTypes };

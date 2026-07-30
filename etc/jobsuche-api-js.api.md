@@ -9,24 +9,34 @@
 // @public (undocumented)
 export const authManager: AuthManager;
 
+// Warning: (ae-forgotten-export) The symbol "ICompanyInfoProps" needs to be exported by the entry point index.d.ts
+//
 // @public (undocumented)
-export function fetchCompanyInfo(refnr: string): Promise<any>;
+export function fetchCompanyInfo(kundennummerHash: string): Promise<ICompanyInfoProps | null>;
 
 // Warning: (ae-forgotten-export) The symbol "IJobDetailsV2ResponseProps" needs to be exported by the entry point index.d.ts
 //
-// @public
+// @public (undocumented)
 export function fetchJobDetailsV2(refnr: string): Promise<IJobDetailsV2ResponseProps | null>;
 
 // Warning: (ae-forgotten-export) The symbol "IJobDetailsV3ResponseProps" needs to be exported by the entry point index.d.ts
 //
-// @public
+// @public (undocumented)
 export function fetchJobDetailsV3(refnr: string): Promise<IJobDetailsV3ResponseProps | null>;
 
-// Warning: (ae-forgotten-export) The symbol "ICompanyAvatar" needs to be exported by the entry point index.d.ts
+// @public (undocumented)
+export function getCompanyInfo(kundennummerHash: string): Promise<ICompanyInfoProps | null>;
+
 // Warning: (ae-forgotten-export) The symbol "ICompanyLogoURL" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export function getCompanyLogoURL(kundennummerHash: string, getAvatarIfNeeded?: ICompanyAvatar | boolean): Promise<ICompanyLogoURL>;
+export function getCompanyLogo(kundennummerHash: string, companyName?: string): Promise<ICompanyLogoURL>;
+
+// @public (undocumented)
+export function getCompanyLogoURL(kundennummerHash: string, companyName?: string): Promise<ICompanyLogoURL>;
+
+// @public (undocumented)
+export function getJobDetails(refnr: string, version?: "v4" | "v3" | "v2"): Promise<IJobDetailsV3ResponseProps | IJobDetailsV2ResponseProps | null>;
 
 // @public (undocumented)
 export function getJwt(): Promise<string | {}>;
@@ -35,10 +45,13 @@ export function getJwt(): Promise<string | {}>;
 // Warning: (ae-forgotten-export) The symbol "JobSearchResponse" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function jobsSearch(params?: Partial<IArbeitsAgenturJobArgsProps>): Promise<JobSearchResponse | null>;
+export function jobsSearch(params?: Partial<IArbeitsAgenturJobArgsProps>, version?: number): Promise<JobSearchResponse | null>;
 
-// @public
-export function jobsSearchOld(params?: Partial<IArbeitsAgenturJobArgsProps>): Promise<JobSearchResponse | null>;
+// Warning: (ae-forgotten-export) The symbol "IStellenlokation" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "GroupedByRegion" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function offersLocations(jobsOfferLocations: IStellenlokation[]): GroupedByRegion[];
 
 // @public (undocumented)
 export const searchParamsExample: Partial<IArbeitsAgenturJobArgsProps>;

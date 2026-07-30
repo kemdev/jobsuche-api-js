@@ -1,20 +1,22 @@
 import getJwt from "./auth/authApi";
 import { searchParamsExample } from "./examples/searchParamsExample";
-import { jobsSearchOld, jobsSearch } from "./api/jobsSearch";
-import { fetchJobDetailsV3, fetchJobDetailsV2 } from "./api/jobDetails";
+import { jobsSearch } from "./api/jobsSearch";
+import { fetchJobDetailsV3, fetchJobDetailsV2, getJobDetails } from "./api/jobDetails";
 import authManager from "./auth/authManager";
-import { getCompanyLogoURL } from "./api/companyLogo";
-import { fetchCompanyInfo } from "./api/companyInfo";
+import { getCompanyLogoURL, getCompanyLogo } from "./api/companyLogo";
+import { fetchCompanyInfo, getCompanyInfo } from "./api/companyInfo";
 import { offersLocations } from './helpers/helpers'; 
 export {
   getJwt,
   jobsSearch,
-  jobsSearchOld,
   searchParamsExample,
   fetchJobDetailsV2,
   fetchJobDetailsV3,
+  getJobDetails,
   authManager,
   getCompanyLogoURL,
+  getCompanyLogo,
   fetchCompanyInfo,
+  getCompanyInfo,
   offersLocations,
 };

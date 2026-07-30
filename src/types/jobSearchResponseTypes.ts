@@ -68,7 +68,7 @@ interface JobSearchResponse {
 
 type RecursiveObject = { [key: string]: any } | any[];
 
-export {
+export type {
   JobOffer,
   Coordinates,
   Arbeitsort,

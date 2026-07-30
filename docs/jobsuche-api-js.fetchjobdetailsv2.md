@@ -4,8 +4,6 @@
 
 ## fetchJobDetailsV2() function
 
-Fetches job details (V2) based on the provided reference number.
-
 **Signature:**
 
 ```typescript
@@ -42,14 +40,11 @@ string
 
 </td><td>
 
-from the response of the jobSearch function.
-
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 Promise&lt;IJobDetailsV2ResponseProps \| null&gt;
-
-{<!-- -->(Promise<!-- -->&lt;<!-- -->JobDetails \| null<!-- -->&gt;<!-- -->)<!-- -->} - The job details result.
 
