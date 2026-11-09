@@ -2,7 +2,7 @@
  * Root Response
  * ========================================================================== */
 
-export interface IJobDetailsV6ResponseProps {
+export interface JobSearchResponseV6 {
   ergebnisliste: JobOffer[];
   maxErgebnisse: number;
   page: number;
@@ -46,7 +46,8 @@ export interface JobOffer {
   datumErsteVeroeffentlichung: string;
   aenderungsdatum?: string;
 
-  externeURL?: string;
+  externeURL?: string | null;
+  externeUrl?: string | null;
 
   hauptberuf?: string;
   alternativBeruf1?: string;
@@ -157,3 +158,8 @@ export interface ScoredFacet extends Facet {
    */
   scores: Record<string, number>;
 }
+
+
+/** @deprecated Historical name: this is a V6 search response, not a detail response. */
+export type IJobDetailsV6ResponseProps = JobSearchResponseV6;
+export type JobOfferV6 = JobOffer;

@@ -34,3 +34,7 @@ export type {
   IOffersLocationsInterface,
   IJobDetailsV6ResponseProps,
 };
+
+
+export type { JobSearchResponseV6, JobOfferV6 } from './jobDetailsResponseV6Types';
+export type { JobLinkSource } from '../helpers/jobApplicationUrl';

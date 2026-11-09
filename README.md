@@ -47,3 +47,19 @@ jobDetails(jobRef).then(details => console.log(details))
 .catch(error => console.error(error));
 
 ```
+
+## V6 search and application links (unreleased)
+
+```ts
+import { jobsSearchV6, getJobApplicationUrl, type JobSearchResponseV6 } from 'jobsuche-api-js';
+const response: JobSearchResponseV6 | null = await jobsSearchV6({ what: 'React', where: 'Stuttgart' });
+for (const job of response?.ergebnisliste ?? []) {
+  console.log(job.stellenangebotsTitel, getJobApplicationUrl(job));
+}
+```
+
+`getJobApplicationUrl` prefers the actual `externeURL` field (also accepts legacy `externeUrl`) and falls back to the BA job detail page if the external URL is null, blank or unsafe. It never substitutes a generic company homepage. Preserve an external search-result URL when a subsequent detail response omits it.
+
+V6 applies to **search** and its `ergebnisliste` / `JobOfferV6` types. The existing `getJobDetails(ref, 'v4')` uses the supported V4 detail endpoint. The historical `IJobDetailsV6ResponseProps` name remains a deprecated alias for `JobSearchResponseV6`. Search and detail calls use independent, bounded fetch requests and keep the documented null-on-error behavior; no cross-request cancellation or unbounded retries.
+
+These source changes are not a new npm release until a version is published.

@@ -58,7 +58,7 @@ interface IJobDetailsV3ResponseProps {
   referenznummer: string;
   geforderteAnlagen: string;
   anzeigeAnonym: boolean;
-  externeURL: string;
+  externeURL?: string | null;
   [key: string]: any; // to allow any additional properties
 }
 
@@ -95,3 +95,4 @@ export type {
   ILinks,
   ICompanyInfoProps,
 };
+
