@@ -2,7 +2,7 @@
 
 ## [2.1.0] - 2026-11-11
 
-Source release prepared; npm publication is pending 2FA authorization (EOTP). Build and tests passed on the latest publish attempt.
+Published to npm on 2026-11-11. Build, tests and registry upload succeeded after updating the CI publishing token.
 
 ### Added
 - Explicit `jobsSearchV6` function with `JobSearchResponseV6` and `JobOfferV6` exports.

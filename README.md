@@ -4,7 +4,7 @@ JavaScript and TypeScript client for the Bundesagentur für Arbeit Jobsuche API.
 
 ## Installation
 
-Source version: **2.1.0**. npm publication is currently pending: the release build/tests pass, but automated publishing requires 2FA authorization (EOTP). Until publication succeeds, npm may still serve the previous version.
+Current release: **2.1.0**, published to npm on 2026-11-11 after successful build and tests.
 
 ```sh
 npm install jobsuche-api-js@^2.1.0
