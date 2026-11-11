@@ -40,15 +40,15 @@ jobsSearch(searchParams).then(response => console.log(response))
 
 ## Fetch Job Details
 ```js
-import { jobDetails } from 'jobsuche-api-js';
+import { getJobDetails } from 'jobsuche-api-js';
 
 const jobRef = '11112-44023-1558466-0-S';
-jobDetails(jobRef).then(details => console.log(details))
+getJobDetails(jobRef).then(details => console.log(details))
 .catch(error => console.error(error));
 
 ```
 
-## V6 search and application links (unreleased)
+## V6 search and application links (2.1.0)
 
 ```ts
 import { jobsSearchV6, getJobApplicationUrl, type JobSearchResponseV6 } from 'jobsuche-api-js';
@@ -62,4 +62,4 @@ for (const job of response?.ergebnisliste ?? []) {
 
 V6 applies to **search** and its `ergebnisliste` / `JobOfferV6` types. The existing `getJobDetails(ref, 'v4')` uses the supported V4 detail endpoint. The historical `IJobDetailsV6ResponseProps` name remains a deprecated alias for `JobSearchResponseV6`. Search and detail calls use independent, bounded fetch requests and keep the documented null-on-error behavior; no cross-request cancellation or unbounded retries.
 
-These source changes are not a new npm release until a version is published.
+Version 2.1.0 includes these changes. Install it with `npm install jobsuche-api-js@^2.1.0`.
