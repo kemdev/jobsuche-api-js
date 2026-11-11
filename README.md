@@ -1,65 +1,159 @@
+# jobsuche-api-js
 
-# Jobsuche API JS - TypeScript Library for Arbeitsagentur Job Search
-
-jobsuche-api-js is a simple JavaScript/TypeScript library designed to interact with the Jobsuche API provided by the German Federal Employment Agency (Arbeitsagentur). This library simplifies fetching job listings, job details, and search functionality for developers integrating job search features into their web applications.
-
-## Status
-**This library is currently in beta.**
-We are actively working on improving the library. Please report any issues you encounter.
-
-## Features
-- Fetch job search results by location and keyword
-- Retrieve detailed information about specific job listings
-- Built-in authentication with API Key
-- Lightweight and easy to integrate with any JavaScript or TypeScript project
+JavaScript and TypeScript client for the Bundesagentur für Arbeit Jobsuche API.
 
 ## Installation
 
 ```sh
-npm install jobsuche-api-js
+npm install jobsuche-api-js@^2.1.0
 ```
 
-# Overview
-jobsuche-api-js fetches jobs from the Arbeitsagentur API. It simplifies the process of retrieving job listings and details using modern JavaScript techniques.
+Requires Node.js 22 or newer. Search and detail requests use native `fetch`; browser requests still depend on the provider's CORS policy. For web applications, call the library from your server. The provider API key header is added automatically; no initialization or personal access token is required for search/details.
 
-# Usage
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
-### Note:
-No need to initialize the app anymore, as adding "X-API-KEY": "jobboerse-jobsuche" to the headers is added automatically in all requests. This is the authentication needed in the latest update of the Jobsuche API. For more details, check theFor more details, check the official [Arbeitsagentur Jobsuche API Documentation](https://github.com/bundesAPI/jobsuche-api#:~:text=Bei%20folgenden%20GET%2Drequests%20ist%20die%20clientId%20als%20Header%2DParameter%20%27X%2DAPI%2DKey%27%20zu%20%C3%BCbergeben).
-
-
-## Fetch Job Search Results
-
-```js
-import { jobsSearch } from 'jobsuche-api-js';
-
-const searchParams = { what: 'developer', where: 'Berlin' };
-jobsSearch(searchParams).then(response => console.log(response))
-.catch(error => console.error(error));
-```
-
-## Fetch Job Details
-```js
-import { getJobDetails } from 'jobsuche-api-js';
-
-const jobRef = '11112-44023-1558466-0-S';
-getJobDetails(jobRef).then(details => console.log(details))
-.catch(error => console.error(error));
-
-```
-
-## V6 search and application links (2.1.0)
+## Quick start: V6 search
 
 ```ts
-import { jobsSearchV6, getJobApplicationUrl, type JobSearchResponseV6 } from 'jobsuche-api-js';
-const response: JobSearchResponseV6 | null = await jobsSearchV6({ what: 'React', where: 'Stuttgart' });
-for (const job of response?.ergebnisliste ?? []) {
-  console.log(job.stellenangebotsTitel, getJobApplicationUrl(job));
+import {
+  jobsSearchV6,
+  getJobApplicationUrl,
+  type JobSearchResponseV6,
+  type JobOfferV6,
+} from 'jobsuche-api-js';
+
+const result: JobSearchResponseV6 | null = await jobsSearchV6({
+  what: 'React',
+  where: 'Stuttgart',
+  radius: 25,
+  page: 1,
+  size: 20,
+  workTime: ['vz', 'ho'],
+});
+
+if (!result) {
+  console.error('The provider request failed. Try again later.');
+} else {
+  for (const job of result.ergebnisliste) {
+    console.log(job.stellenangebotsTitel, job.firma, getJobApplicationUrl(job));
+  }
 }
 ```
 
-`getJobApplicationUrl` prefers the actual `externeURL` field (also accepts legacy `externeUrl`) and falls back to the BA job detail page if the external URL is null, blank or unsafe. It never substitutes a generic company homepage. Preserve an external search-result URL when a subsequent detail response omits it.
+CommonJS is also supported:
 
-V6 applies to **search** and its `ergebnisliste` / `JobOfferV6` types. The existing `getJobDetails(ref, 'v4')` uses the supported V4 detail endpoint. The historical `IJobDetailsV6ResponseProps` name remains a deprecated alias for `JobSearchResponseV6`. Search and detail calls use independent, bounded fetch requests and keep the documented null-on-error behavior; no cross-request cancellation or unbounded retries.
+```js
+const { jobsSearchV6 } = require('jobsuche-api-js');
+```
 
-The source version is 2.1.0. Registry publication is pending: the GitHub Actions build/tests passed, but npm rejected the upload with E404. Check the repository NPM_TOKEN secret for write access to this package, then rerun the failed publish job. Do not assume the version is installable from npm until that job succeeds.
+### Search parameters
+
+All parameters are optional. English names are translated to the provider's aliases.
+
+| Parameter | Provider name | Meaning |
+| --- | --- | --- |
+| `what` | `was` | Job title or keywords |
+| `where` | `wo` | City or postal code |
+| `radius` | `umkreis` | Distance in kilometres |
+| `page`, `size` | `page`, `size` | Page (starting at 1), results per page |
+| `publishedSince` | `veroeffentlichtseit` | Publication age in days |
+| `employer` | `arbeitgeber` | Employer filter |
+| `professionalField` | `berufsfeld` | Professional field |
+| `occupation` | `beruf` | Occupation |
+| `offerType` | `angebotsart` | 1: work, 2: self-employment, 4: training/dual study, 34: internship/trainee |
+| `contractDuration` | `befristung` | 1: fixed term, 2: permanent |
+| `isTemporary` | `zeitarbeit` | Include temporary employment |
+| `isPrivate` | `pav` | Private placement filter |
+| `workTime` | `arbeitszeit` | Array of `vz`, `tz`, `snw`, `ho`, `mj` |
+
+Work-time codes mean full-time, part-time, shift/night/weekend, home/telework and minijob respectively. Multiple codes are joined with semicolons. Provider filter availability may change.
+
+## Job details: V4
+
+V6 is the **search** API. Details use the supported V4 endpoint:
+
+```ts
+import { getJobDetails } from 'jobsuche-api-js';
+
+const details = await getJobDetails('10000-example-S', 'v4');
+if (details) {
+  console.log(details.stellenangebotsTitel);
+  console.log(details.stellenangebotsBeschreibung);
+}
+```
+
+Pass the original reference, not a Base64 string. The library encodes it and URL-escapes the result. `getJobDetails(ref)` defaults to V4. Legacy V2/V3 calls remain available through `getJobDetails(ref, 'v2' | 'v3')`, `fetchJobDetailsV2` and `fetchJobDetailsV3`.
+
+Descriptions can contain Markdown or HTML. Rendering and sanitization belong in the consuming application; never insert provider text as unsanitized HTML.
+
+## Direct application links
+
+```ts
+import { getExternalJobUrl, getJobApplicationUrl } from 'jobsuche-api-js';
+
+const direct = getExternalJobUrl({
+  externeURL: 'https://company.example/careers/job-123',
+});
+const fallback = getJobApplicationUrl({
+  referenznummer: '10000-example-S',
+  externeURL: null,
+});
+```
+
+- `getExternalJobUrl(job)` reads `externeURL` (capital URL), then legacy `externeUrl`. It returns a valid HTTP(S) URL or `null`.
+- `getJobApplicationUrl(job)` prefers that external job URL. Otherwise it builds the Arbeitsagentur job-detail URL using `referenznummer` or legacy `refnr`, or returns `null` without either.
+- Blank URLs, unsupported protocols and URLs containing credentials are rejected.
+- Preserve a direct URL from search when details omit it:
+
+```ts
+const applicationUrl =
+  (details && getExternalJobUrl(details)) ||
+  getJobApplicationUrl(searchJob);
+```
+
+The library does not submit applications or determine whether a user applied. Track opening and application confirmation separately in your app.
+
+## Salary, contract and company metadata
+
+V6 `JobOfferV6` includes optional salary and contract fields such as `verguetungsangabe`, `artDerVerguetung`, `festgehalt`, `gehaltsspanneVon`, `gehaltsspanneBis`, `vertragsdauer`, `eintrittszeitraum`, `hauptberuf` and working-time flags.
+
+Treat missing/null values and provider codes such as `KEINE_ANGABEN` as missing information. For example, `JAHRESGEHALT` describes a period; it is not a salary amount. Render a numeric range only when supplied, and do not infer monthly/annual pay when the period is absent.
+
+For a company logo, the provider uses the employer hash:
+
+```ts
+const hash = searchJob.arbeitgeberKundennummerHash;
+const logoUrl = hash
+  ? 'https://rest.arbeitsagentur.de/vermittlung/ag-darstellung-service/ct/v1/arbeitgeberlogo/' +
+    encodeURIComponent(hash)
+  : null;
+```
+
+Hashes may contain `=`; encode them. A missing hash or a 404 means no logo is available. Use initials as a display fallback. The existing `getCompanyLogoURL(hash, companyName?)` / `getCompanyLogo` APIs return `{ url, isLogoExist, error }`; their optional avatar fallback is not an actual company logo. `getCompanyInfo`, `fetchCompanyInfo`, `offersLocations` and legacy authentication helpers remain available.
+
+## Compatibility and errors
+
+| API | Response |
+| --- | --- |
+| `jobsSearchV6(params)` | `Promise<JobSearchResponseV6 \| null>` |
+| `jobsSearch(params)` / `jobsSearch(params, 6)` | V6 response |
+| `searchJobs(params)` | Alias of `jobsSearch` |
+| `jobsSearch(params, 4)` | Legacy `stellenangebote` response |
+| `getJobDetails(ref, version?)` | V4/V3 or V2 details, or `null` |
+
+Search/detail requests have independent 12-second timeout signals. Network failures, non-success responses and invalid JSON return `null`; they do not recursively retry or cancel other users' requests.
+
+`IJobDetailsV6ResponseProps` remains a deprecated alias of `JobSearchResponseV6`; despite its historical name it describes search results, not a V6 detail endpoint. Root exports include `JobSearchResponseV6`, `JobOfferV6`, `JobLinkSource` and `IArbeitsAgenturJobArgsProps`.
+
+## Development and release
+
+```sh
+npm ci
+npm test
+```
+
+Tests build both distributions and cover API exports, V6 request parameters/concurrency, failure behavior, detail encoding and safe application-link precedence.
+
+GitHub Actions publishes after tests when `package.json` changes on `main`, or a `v*.*.*` tag is pushed. The workflow skips versions already present on npm and uses the repository's `NPM_TOKEN` secret. Keep package.json and package-lock.json versions in sync. Never commit a token.
+
+This community client is not an official Bundesagentur für Arbeit SDK. See the [provider API reference](https://github.com/bundesAPI/jobsuche-api) and [MIT license](LICENSE).
