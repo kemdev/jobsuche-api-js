@@ -4,6 +4,8 @@ JavaScript and TypeScript client for the Bundesagentur für Arbeit Jobsuche API.
 
 ## Installation
 
+Source version: **2.1.0**. npm publication is currently pending: the release build/tests pass, but automated publishing requires 2FA authorization (EOTP). Until publication succeeds, npm may still serve the previous version.
+
 ```sh
 npm install jobsuche-api-js@^2.1.0
 ```
@@ -155,5 +157,11 @@ npm test
 Tests build both distributions and cover API exports, V6 request parameters/concurrency, failure behavior, detail encoding and safe application-link precedence.
 
 GitHub Actions publishes after tests when `package.json` changes on `main`, or a `v*.*.*` tag is pushed. The workflow skips versions already present on npm and uses the repository's `NPM_TOKEN` secret. Keep package.json and package-lock.json versions in sync. Never commit a token.
+
+### Troubleshooting EOTP in GitHub Actions
+
+If `npm publish` reports EOTP, it is requesting a two-factor authentication code. For the existing token-based workflow, use a granular npm token scoped to this package with read/write access and the **Bypass two-factor authentication** option, subject to your package's publishing policy. Replace the repository's `NPM_TOKEN` secret and rerun the failed job. Do not paste tokens or one-time codes into issues, docs or chat.
+
+If the package policy disallows token publishing, use npm Trusted Publishing (OIDC) instead; that requires configuration in npm package settings and corresponding workflow changes. See [npm 2FA publishing rules](https://docs.npmjs.com/requiring-2fa-for-package-publishing-and-settings-modification/) and [Trusted Publishing](https://docs.npmjs.com/trusted-publishers/).
 
 This community client is not an official Bundesagentur für Arbeit SDK. See the [provider API reference](https://github.com/bundesAPI/jobsuche-api) and [MIT license](LICENSE).
