@@ -32,6 +32,8 @@ export interface JobOffer {
   verguetungsangabe?: string;
   artDerVerguetung?: string;
   festgehalt?: number;
+  gehaltsspanneVon?: number | null;
+  gehaltsspanneBis?: number | null;
 
   vertragsdauer?: string;
   befristungInMonaten?: number;

@@ -62,4 +62,4 @@ for (const job of response?.ergebnisliste ?? []) {
 
 V6 applies to **search** and its `ergebnisliste` / `JobOfferV6` types. The existing `getJobDetails(ref, 'v4')` uses the supported V4 detail endpoint. The historical `IJobDetailsV6ResponseProps` name remains a deprecated alias for `JobSearchResponseV6`. Search and detail calls use independent, bounded fetch requests and keep the documented null-on-error behavior; no cross-request cancellation or unbounded retries.
 
-Version 2.1.0 includes these changes. Install it with `npm install jobsuche-api-js@^2.1.0`.
+The source version is 2.1.0. Registry publication is pending: the GitHub Actions build/tests passed, but npm rejected the upload with E404. Check the repository NPM_TOKEN secret for write access to this package, then rerun the failed publish job. Do not assume the version is installable from npm until that job succeeds.
